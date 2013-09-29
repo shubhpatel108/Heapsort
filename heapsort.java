@@ -15,19 +15,25 @@ public static void main(String args[])
 	int ans[];
 	sort obj = new sort ();
 	int index;
-	if(n%2==1)
+	int temp;
+	for(i=0;i<heap.length-1;i++)
 	{
-		index = (heap.length-1)/2 - 1;
-		ans = obj.heapify(heap, index);
-	}
-	else
-	{
-		index = (heap.length-1)/2;
-		ans = obj.heapify(heap, index);
+		if((heap.length-i)%2==1)
+		{
+			index = (heap.length-1-i)/2 - 1;
+		}
+		else
+		{
+			index = (heap.length-1-i)/2;
+		}
+		heap = obj.heapify(heap, index,i);
+		temp = heap[0];
+		heap[0] = heap[heap.length-1-i];
+		heap[heap.length-1-i] = temp;
 	}
 	for(i=0;i<n;i++)
 	{
-		System.out.println(ans[i]);
+		System.out.println(heap[i]);
 	}	
 }
 }
